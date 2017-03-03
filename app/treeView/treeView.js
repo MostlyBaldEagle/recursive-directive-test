@@ -20,14 +20,9 @@ angular.module('myApp.treeView', ['ngRoute'])
 
             var tree = convertToArray(getData(), $scope.data);
             
-            $scope.toggle = toggleItem;
-            
-            $scope.isExpanded = true;
-            
-            function toggleItem(){
-                  $scope.isExpanded = !$scope.isExpanded;
-            };
-            
+            // convert json to arrays as that makes it considerably easier to
+            // traverse with angular directive, but has performance implication
+            // when dealing with very large json hierarchies
             function convertToArray(data, parentNode) {
 
                 // check if the data is an array
@@ -63,6 +58,7 @@ angular.module('myApp.treeView', ['ngRoute'])
                 return parentNode;
             };
 
+            // just some example data from stackstorm
             function getData() {
                 return {
                     "tasks" : [{
